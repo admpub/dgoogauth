@@ -21,8 +21,8 @@ var (
 )
 
 type KeyData struct {
-	Original string
-	Encoded  string
+	Original string `json:"original"`
+	Encoded  string `json:"encoded"`
 }
 
 func QrCode(account, base32encode, qrApiURL string) string {
