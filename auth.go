@@ -53,10 +53,14 @@ func VerifyFrom(keyData *KeyData, password string) (bool, error) {
 	return Verify(keyData.Encoded, password)
 }
 
+func NewConfig(secret string) *OTPConfig {
+	return &OTPConfig{WindowSize: 2, Secret: secret}
+}
+
 //Verify 验证
 func Verify(secret string, password string) (bool, error) {
-	totp := &OTPConfig{WindowSize: 2, Secret: secret}
-	return totp.Authenticate(password)
+	conf := NewConfig(secret)
+	return conf.Authenticate(password)
 }
 
 func randomString(size int) string {
