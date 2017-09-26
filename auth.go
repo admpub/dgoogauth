@@ -46,7 +46,7 @@ func QrCode(account, base32encode, qrApiURL string) string {
 }
 
 //GenKeyData 生成KeyData
-func GenKeyData(account string) *KeyData {
+func GenKeyData() *KeyData {
 	ts := uint64(time.Now().Unix() / LifeTime)
 	text := counterToBytes(ts)
 	secret := randomString(100)
@@ -62,7 +62,7 @@ func GenKeyData(account string) *KeyData {
 
 //GenQrCode 生成QrCode
 func GenQrCode(account string, qrApiURL string) (*KeyData, string) {
-	keyData := GenKeyData(account)
+	keyData := GenKeyData()
 	return keyData, keyData.OTP(account)
 }
 
